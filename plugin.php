@@ -14,7 +14,7 @@ if ( ! defined( 'WPINC' ) ) {
 // This plugin uses namespaces and requires PHP 5.3 or greater.
 if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
 	add_action( 'admin_notices', function() {
-		echo '<div class="error"><p>WSU People Directory requires PHP 5.3 to function properly. Please upgrade PHP or deactivate the plugin.</p></div>';
+		echo '<div class="error"><p>Primary Categories requires PHP 5.3 to function properly. Please upgrade PHP or deactivate the plugin.</p></div>';
 	} );
 
 	return;
