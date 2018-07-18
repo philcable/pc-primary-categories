@@ -2,7 +2,23 @@
 
 namespace PC\Primary_Categories;
 
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_enqueue_scripts', 10 );
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\\custom_category_meta_box', 10 );
+
+/**
+ * Enqueues the script for handling the primary category select input.
+ *
+ * @since 0.0.1
+ */
+function admin_enqueue_scripts() {
+	$screen = get_current_screen();
+
+	if ( 'post' !== $screen->post_type ) {
+		return;
+	}
+
+	wp_enqueue_script( 'pc-primary-category', plugins_url( 'js/admin-primary-category.js', dirname( __FILE__ ) ), array(), null, true );
+}
 
 /**
  * Remove the default category meta box, re-add it with a custom callback.
