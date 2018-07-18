@@ -7,6 +7,17 @@ add_action( 'add_meta_boxes', __NAMESPACE__ . '\\custom_category_meta_box', 10 )
 add_action( 'save_post', __NAMESPACE__ . '\\save_post', 10, 2 );
 
 /**
+ * Provides the post types for which to enable the primary category feature.
+ *
+ * @since 0.0.1
+ */
+function post_types() {
+	$default = array( 'post' );
+
+	return apply_filters( 'pc_primary_categories_post_types', $default );
+}
+
+/**
  * Enqueues the script for handling the primary category select input.
  *
  * @since 0.0.1
@@ -14,7 +25,7 @@ add_action( 'save_post', __NAMESPACE__ . '\\save_post', 10, 2 );
 function admin_enqueue_scripts() {
 	$screen = get_current_screen();
 
-	if ( 'post' !== $screen->post_type ) {
+	if ( ! in_array( $screen->post_type, post_types(), true ) ) {
 		return;
 	}
 
@@ -27,8 +38,8 @@ function admin_enqueue_scripts() {
  * @since 0.0.1
  */
 function custom_category_meta_box() {
-	remove_meta_box( 'categorydiv', 'post', 'side' );
-	add_meta_box( 'categorydiv', 'Categories', __NAMESPACE__ . '\\custom_category_meta_box_cb', 'post', 'side' );
+	remove_meta_box( 'categorydiv', post_types(), 'side' );
+	add_meta_box( 'categorydiv', 'Categories', __NAMESPACE__ . '\\custom_category_meta_box_cb', post_types(), 'side' );
 }
 
 /**
