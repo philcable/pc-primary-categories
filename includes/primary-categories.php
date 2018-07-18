@@ -63,9 +63,9 @@ function custom_category_meta_box_cb( $post, $box ) {
 
 	$primary_category = get_post_meta( $post->ID, '_pc_primary_category', true );
 	?>
-	<p class="description">Please select all categories before designating the primary category.</p>
+	<p class="description">Please select all categories before designating a primary category.</p>
 	<select name="_pc_primary_category" class="widefat" disabled>
-		<option value="">Set primary category</option>
+		<option value="">Select primary category</option>
 		<?php
 		if ( ! empty( $post_categories ) ) {
 			foreach ( $post_categories as $category_id => $category_name ) {

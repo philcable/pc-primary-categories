@@ -1,6 +1,6 @@
 # Primary Categories
 
-A WordPress plugin for allowing users to designate a primary category for their content.
+A WordPress plugin that allows users to designate a primary category for their content.
 
 ## For users
 
